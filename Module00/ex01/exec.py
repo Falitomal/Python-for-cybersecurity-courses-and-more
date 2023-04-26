@@ -20,6 +20,6 @@ def reverse_msg():
 		print ()
 		print ("Usage: python reverse_msg.py <message>")
 	else:
-		print (' '.join(words).swapcase())
+		print (' '.join(words).swapcase()[::-1])
 	
 reverse_msg()
