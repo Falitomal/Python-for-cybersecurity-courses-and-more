@@ -1,9 +1,9 @@
 <h1 align="center">
-📖 Python Modules - 42 Proyect
+📖 Python Modules - 42 Proyect and more
 </h1>
 
 <p align="center">
-	<b><i>Python Cibersecurity Projects</i></b><br>
+	<b><i>Python Projects | Learning from many sides and improving </i></b><br>
 </p>
 
 <p align="center">
@@ -18,8 +18,8 @@
 ## ✏️ Summary
 ```
 Python introductory projects from the school of 42.
-They are three modules of different levels and introductory to what we are going to do in the Cybersecurity campus, it is the first time that these modules are added to the course.
-
+They are modules of different levels and introductory to what we are going to do in the Cybersecurity campus, it is the first time that these modules are added to the course.
+Additionally there is code from different udemy courses and challenges with which I have learned this language. 
 ```
 ## 💡 About the project
 
