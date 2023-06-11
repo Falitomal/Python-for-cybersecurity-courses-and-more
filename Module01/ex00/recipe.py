@@ -13,35 +13,44 @@
 import sys 
 
 class Recipe:
-    def __init__(self, name, cooking_lvl, cooking_time, ingredients, recipe_type, description = None):
-        """Constructor of the class Recipe"""
-        if validate_args(name, cooking_lvl, cooking_time, ingredients, recipe_type, description):
-            self.name = name
-            self.cooking_1v1= cooking_lvl
-            self.cooking_time = cooking_time
-            self.ingredients = ingredients
-            self.recipe_type = recipe_type
-            self.description = description
-        else:
-            print("Invalid arguments")
+    def __init__(self, name, cooking_lvl, cooking_time, ingredients, recipe_type, description=""):
+        """Constructor of the class Recipe
+        Args: name, cooking_lvl, cooking_time, ingredients, recipe_type, description
+        we check if the arguments are valid"""
+
+        if not isinstance(name, str):
+            print("The name must be a string")
             exit()
-    
+        self.name = name
+        if not isinstance(cooking_lvl, int) or cooking_lvl < 1 or cooking_lvl > 5:
+            print("The cooking level must be an integer between 1 and 5 inclusive")
+            exit()
+        self.cooking_lvl = cooking_lvl
+        if not isinstance(cooking_time, int) or cooking_time <= 0:
+            print("The cooking time must be a positive integer")
+            exit()
+        self.cooking_time = cooking_time
+        if not isinstance(ingredients, list) or len(ingredients) == 0 or not all(isinstance(x, str) for x in ingredients):
+            print("The ingredients must be a non-empty list of strings")
+            exit()
+        self.ingredients = ingredients
+        if not isinstance(description, str):
+            print("The description must be a string")
+            exit()
+        self.description = description
+        if recipe_type not in ["starter", "lunch", "dessert"]:
+            print("Invalid arguments, recipe type must be starter, lunch or dessert")
+            exit()
+        self.recipe_type = recipe_type
+    print("Recipe added")
+
     def __str__(self):
         """Return the string to print with the recipe info"""
-        return "Recipe name: " + self.name + "\nCooking level: " + str(self.cooking_lvl) + "\nCooking time: " + str(self.cooking_time) + "\nIngredients: " + str(self.ingredients) +  "\nRecipe type: " + self.recipe_type + "\nDescription: " + self.description
-
-def validate_args(name, cooking_lvl, cooking_time, ingredients, recipe_type, description = None):
-    """Check if the arguments are valid"""
-    if type(name) is not str or len(name) == 0:
-        return False
-    if type(cooking_lvl) is not int or cooking_lvl < 1 or cooking_lvl > 5:
-        return False
-    if type(cooking_time) is not int or cooking_time <= 0:
-        return False
-    if type(ingredients) is not list or len(ingredients) == 0:
-        return False
-    if type(recipe_type) is not str or (recipe_type != "starter" and recipe_type != "lunch" and recipe_type != "dessert") or len(recipe_type) == 0:
-        return False
-    if type(description) is not str or len(description) == 0:
-        return False
-    return True
+        str =   f'Name: {self.name}\n' \
+                f'Cooking level: {self.cooking_lvl}\n' \
+                f'Cooking time: {self.cooking_time} mins\n' \
+                f'Ingredients: {self.ingredients}\n' \
+                f'Recipe type: {self.recipe_type}\n' \
+                f'Description: {self.description}'
+        return str
+    

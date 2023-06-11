@@ -10,37 +10,50 @@
 #                                                                              #
 # **************************************************************************** #
 
-import sys
 from datetime import datetime
 from recipe import Recipe
 
 class Book:
     def __init__(self, name):
+        if not isinstance(name, str):
+            print("The name must be a string")
+            exit()
         self.name = name
-        self.last_upd = datetime.now()
-        self.create_date = self.last_upd
+        self.last_update = datetime.now()
+        self.create_date = datetime.now()
         self.recipe_list = {"starter": [], "lunch": [], "dessert": []}
     
-    def __str__(self):
-        return "Book name: " + self.name + "List ingredents: " + self.recipe_list + "Last update: " + self.last_upd + "Creation date: " + self.create_date  
-    
     def get_recipe_by_name(self, name):
-        for recipe in self.recipe_list:
-            if recipe.name == name:
-                print(recipe)
-                return recipe
-        print("Recipe not found")
-        return None
+        """Search recipe by name and print it"""
+        for recipe_type in self.recipe_list:
+            for recipe in self.recipe_list[recipe_type]:
+                if recipe.name == name:
+                    print(recipe)
+                    return recipe
+        print(f"Recipe not found: {name}")
+        return
     
     def get_recipes_by_types(self, recipe_type):
-        for recipe in self.recipe_list:
-            if recipe.recipe_type == recipe_type:
-                print(recipe)
-        return None
+        """Get all recipe names for a given recipe_type """
+        if recipe_type not in self.recipe_list.keys():
+            print("Invalid arguments, recipe type must be starter, lunch or dessert")
+            return 
+        for recipe in self.recipe_list[recipe_type]:
+            print(recipe.name)
     
     def add_recipe(self, recipe):
+        """Add a recipe to the book and update last_update"""
+        if not isinstance(recipe, Recipe):
+            print("Invalid recipe")
+            return
         self.recipe_list[recipe.recipe_type].append(recipe)
         self.last_upd = datetime.now()
-        print("Recipe added")
-        return None
+        print(f"\nRecipe added ¨{recipe.name}¨ to the book {self.name}")
         
+    def __str__(self):
+        """Return the string to print with the recipe info"""
+        str =   f'Name: {self.name}\n' \
+                f'Last update: {self.last_update}\n' \
+                f'Creation date: {self.create_date}\n' \
+                f'Recipes: {self.recipe_list}'
+        return str

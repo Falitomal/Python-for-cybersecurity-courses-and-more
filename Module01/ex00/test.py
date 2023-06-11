@@ -15,16 +15,28 @@ from recipe import Recipe
 
 # My test recipe book
 
-if __name__ == "__main__":
-    
-    my_book = Book("My test book")
-    tortilla = Recipe("Tortilla", 1, 10, ["eggs", "potatoes", "onion"], "the best tortilla from mlg", "lunch")
-    campero = Recipe("Campero", 1, 10, ["chicken", "mayonesa", "bread"], "the best burger from mlg", "dinner")
-    my_book.add_recipe(campero)
-    my_book.add_recipe(campero)
-    
-    print(my_book.get_recipe_by_name("Campero"))
-    print(my_book.get_recipes_by_types("dinner"))
-    
-    
-    
+jl = Recipe("Tarta ReedVelvet", 4, 280,["Mantequilla", "Queso", "Harina", "Azucar", "Huevos"], "dessert", "Tarta de queso tipo red velvet mmmm")
+
+jl2 = Recipe("Tarta de manzana", 3, 120,["Mantequilla", "Manzana", "Harina", "Azucar", "Huevos"], "dessert", "Tarta de manzanita hambre")
+jl3 = Recipe("Tarta de Vacia", 2, 20,["Mantequilla",  "Harina", "Azucar", "Huevos"], "dessert", "")
+print(jl)
+print(jl2)
+print(jl3)
+
+# My test book
+print("My test book\n")
+my_book = Book("My recipe book")
+print("\n")
+my_book.add_recipe(jl)
+my_book.add_recipe(jl2)
+print("OBtenemos tarata manza\n")
+
+my_book.get_recipe_by_name("Tarta de manzana")
+print("Postres\n")
+my_book.get_recipes_by_types("dessert")
+print("\n")
+print(my_book.last_update)
+print("Tipos")
+my_book.get_recipes_by_types("dessert")
+print("\nTipo vacio")
+my_book.get_recipes_by_types("lunch")
